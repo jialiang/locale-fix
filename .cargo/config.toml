@@ -1,0 +1,10 @@
+# The programs this targets are 32-bit, so the proxy must be too.
+[build]
+target = "i686-pc-windows-msvc"
+
+# Bundle the C runtime so the proxy needs no Visual C++ redistributable.
+# rust-lld (shipped with Rust) links instead of MSVC's link.exe, which rejects
+# the export forwarders the proxy is built from (see build.rs).
+[target.i686-pc-windows-msvc]
+linker = "rust-lld"
+rustflags = ["-C", "target-feature=+crt-static"]

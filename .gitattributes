@@ -1,0 +1,13 @@
+# Store every text file with LF in the repository and check it out with LF,
+# so rustfmt and cargo see the same bytes on every machine.
+* text=auto eol=lf
+
+*.rs text diff=rust
+*.toml text
+*.md text
+
+# Build outputs (the proxy DLL, its debug symbols and any test programs), in
+# case a copy ever lands outside target/.
+*.exe binary
+*.dll binary
+*.pdb binary
